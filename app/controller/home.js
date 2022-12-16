@@ -20,7 +20,7 @@ class HomeController extends Controller {
     const result = await this.app.mysql.query(sql);
     if (result.length > 0) {
       ctx.session.openId = new Date().getTime();
-      console.log(ctx.session.openId);
+      ctx.set("setCookie", "weiyafei-docker-test");
       ctx.body = { data: "ok", openId: ctx.session.openId };
     } else {
       ctx.body = { data: "无用户信息" };

@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  webapp:
+    build: ../orderFood
+    image: orderfood-frontend-image
+    container_name: orderfood-frontend
+    ports:
+      - 8081:80
+    networks:
+      - mynet
+
+  server:
+    build: ./
+    image: orderfood-backend-image
+    container_name: orderfood-backend
+    ports:
+      - 7001:7001
+    links:
+      - mysql
+    depends_on:
+      - mysql
+    networks:
+      - mynet
+
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - $PWD/conf/my.cnf:/etc/mysql/my.cnf
+      - $PWD/logs:/logs
+      - $PWD/data:/mysql_data
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+    networks:
+      - mynet
+networks:
+  mynet:
+    driver: bridge

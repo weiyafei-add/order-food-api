@@ -27,13 +27,13 @@ module.exports = (appInfo) => {
     // 单数据库信息配置
     client: {
       // host
-      host: "localhost",
+      host: "mysql",
       // 端口号
       port: "3306",
       // 用户名
       user: "root",
       // 密码
-      password: "root",
+      password: "123456",
       // 数据库名
       database: "order_food_sql",
     },
@@ -52,7 +52,7 @@ module.exports = (appInfo) => {
   };
 
   config.cors = {
-    origin: "http://localhost:3000",
+    origin: "*",
     credentials: true, // 开启认证
     allowMethods: "GET,POST,PUT,HEAD,DELETE,PATCH,OPTIONS",
   };
